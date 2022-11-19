@@ -6,6 +6,10 @@ import { createStackNavigator, TransitionSpecs, CardStyleInterpolators } from "@
 import Splash from './screens/Splash';
 import Login from './screens/Login';
 import Test from './screens/Test';
+import DetailScreen from './screens/DetailScreen';
+import HomeScreen from './screens/HomeScreen';
+import Screen6 from './screens/Screen6';
+import Screen7 from './screens/Screen7';
 const Stack = createStackNavigator();
 const config = {
   animation: 'spring',
@@ -95,6 +99,16 @@ export default function App() {
         }} />
         <Stack.Screen name='Test' component={Test}     
        />
+
+<Stack.Screen name='HomeScreen' component={HomeScreen}     
+      />
+      <Stack.Screen name='DetailScreen' component={DetailScreen}     
+       />
+   
+       <Stack.Screen name='Screen6' component={Screen6}     
+      />
+       <Stack.Screen name='Screen7' component={Screen7}     
+      />
     </Stack.Navigator>
   </NavigationContainer>
   );
