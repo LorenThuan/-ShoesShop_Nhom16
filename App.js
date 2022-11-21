@@ -67,7 +67,7 @@ const customTransition = {
   }
 }
 export default function App() {
-  const Stack = createNativeStackNavigator();
+  // const Stack = createStackNavigator();
   return (
     <NavigationContainer>
     <Stack.Navigator screenOptions={{headerShown:false,
