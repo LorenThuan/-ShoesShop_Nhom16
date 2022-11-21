@@ -9,7 +9,7 @@ export default function DetailScreen( {navigation} ) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-                    <TouchableOpacity  onPress={() => navigation.navigate('Home')} >
+                    <TouchableOpacity  onPress={() => navigation.navigate('HomeScreen')} >
                         <MyIcon style={styles.iconStyleS} name='arrow-back' />
                     </TouchableOpacity>
                     <TouchableOpacity >
@@ -38,7 +38,7 @@ export default function DetailScreen( {navigation} ) {
                     <TouchableOpacity>
                         <MyIconIon  style={styles.iconStyle} name='heart-outline' />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.btnBuyBorder}>
+                    <TouchableOpacity style={styles.btnBuyBorder}  onPress={() => navigation.navigate('Screen6')}>
                         <Text style={styles.btnBuyBorderTxt}>Buy Now</Text>
                     </TouchableOpacity>
                 </View>

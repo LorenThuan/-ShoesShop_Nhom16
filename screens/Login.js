@@ -47,7 +47,7 @@ export default function Login({navigation}) {
         </View>
        <View style={styles.bot}>
             <Text style={{fontSize:18,color:'gray'}}>By connecting your account confirm that you agree{"\n"} with our<Text style={{color:'black',fontWeight:'bold'}}> Term and Condition</Text> </Text>
-            <TouchableOpacity style={styles.btn}>
+            <TouchableOpacity style={styles.btn} onPress={() => {navigation.navigate('HomeScreen')}}>
                 <Text style={{fontSize:18,fontWeight:'bold',color:'white'}}>Login</Text>
             </TouchableOpacity>
        </View>  

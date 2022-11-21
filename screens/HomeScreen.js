@@ -72,7 +72,7 @@ export default function HomeScreen( {navigation} ) {
                 </View>
 
                 <View style={styles.titleProductBoder}>
-                    <Text style={styles.titleProduct}>Chose brand</Text>
+                    <Text style={styles.titleProduct}>New Arraival</Text>
                     <TouchableOpacity>
                         <Text style={styles.titleProductViewAll}>View all</Text>
                     </TouchableOpacity>
@@ -87,7 +87,7 @@ export default function HomeScreen( {navigation} ) {
                         renderItem={({ item }) => (
                             <View style={styles.itemProduct}>
                                 <MyIconIon style={styles.itemProductIcon} name='heart-outline' />
-                                <TouchableOpacity  onPress={() => navigation.navigate('Detail')} >
+                                <TouchableOpacity  onPress={() => navigation.navigate('DetailScreen')} >
                                     <Image style={styles.itemProductImg} source={imgTemp} />
                                 </TouchableOpacity>
                                 <View style={styles.itemProductRating}>
