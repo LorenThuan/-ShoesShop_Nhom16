@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     justifyContent:'flex-end'
  },
  btn:{
-    flex:0.3,
+    flex:0.8,
     margin:15,
     borderRadius:15,
     backgroundColor:'#3D8AD1',

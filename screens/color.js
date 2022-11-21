@@ -4,5 +4,6 @@ const colors = {
   lightGrey35: "rgb(235,235,235)",
   lightDarkGrey: "rgb(230,230,230)",
   lightDark: "rgb(85,85,85)",
+  lightBlue: "rgb(173,216,230)",
 };
 export default colors;
