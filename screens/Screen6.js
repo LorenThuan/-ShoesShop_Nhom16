@@ -50,10 +50,6 @@ import {
      console.log(listRender);
     }, [isFocused, rerender]);
 
-
-
-    
-
     function add(index) {
       var soLuong = Number.parseInt(listRender[index].soLuong) + 1;
       listOrders[index].soLuong = soLuong + "";
@@ -102,10 +98,10 @@ import {
           text: "Yes",
           onPress: () => {
             listOrders.splice(index, 1);
-            var donGia = Number.parseInt(listRender[index].donGia)
-            var tinhTienLai =  Number.parseInt(totalPrice) - donGia 
-            setDelivaryCharge(0.00 + "")
-            setTotalPrice(tinhTienLai + "")
+            // var donGia = Number.parseInt(listRender[index].donGia)
+            // var tinhTienLai =  Number.parseInt(totalPrice) - donGia 
+            // setDelivaryCharge(0.00 + "")
+            // setTotalPrice(tinhTienLai + "")
             setRerender(!rerender);
           },
         },
@@ -125,7 +121,7 @@ import {
           style={styles.btnGoBack}>
             <Ionicons name="arrow-back" size={28} color="black" />
           </TouchableOpacity>
-          <Text style={{ fontSize: 17, fontWeight: "bold" }}>Cart</Text>
+          <Text style={{ fontSize: 30, fontWeight: "bold" }}>Cart</Text>
           <View style={{ width: 45 }}></View>
         </View>
 
@@ -149,7 +145,7 @@ import {
                   </View>
                     
             
-                  <View style={{ marginLeft: 15, justifyContent: "space-around", width: "55%"}}>
+                  <View style={{ marginLeft: 15, justifyContent: "space-around", width: "50%"}}>
                     <Text style={{ fontWeight: "bold", fontSize: 15 , marginTop: 20}}>
                         {item.tenSanPham}
                     </Text>
@@ -171,12 +167,10 @@ import {
                       <TouchableOpacity onPress={() => {deleteItem(index)}}>
                               <MaterialCommunityIcons name="delete-circle-outline" size={32} color="#8F959E"/>
                       </TouchableOpacity>
-                      
-                         
                     </View>
                   </View>
                 </View>
-             
+              
               </View>
           
           </View>
@@ -333,7 +327,7 @@ import {
     },
     header: {
       flexDirection: "row",
-      height: 20,
+      height: 40,
       alignItems: "center",
       justifyContent: "space-between",
       backgroundColor: "white",
