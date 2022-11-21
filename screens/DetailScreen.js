@@ -2,33 +2,72 @@ import { StatusBar } from 'expo-status-bar';
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, ScrollView } from 'react-native';
 import MyIcon from 'react-native-vector-icons/MaterialIcons';
 import MyIconIon from 'react-native-vector-icons/Ionicons';
+import React, { createContext, useEffect, useState,useContext } from "react";
+export var ListOrderContexts = createContext();
+import { useIsFocused } from "@react-navigation/native";
+import { ListOrderContext } from "./HomeScreen";
+export default function DetailScreen( {navigation, route} ) {
+    const { product } = route.params;
+    // const isFocused = useIsFocused();
+    // const [listRender, setListRender] = useState([]);
+    const [listOrders, setListOrders] = useState([]);
+    var { listOrder } = useContext(ListOrderContext);
+    // const [rerender, setRerender] = useState(false);
 
-import imgTemp from '../Img/shoesTemp.png'
+    useEffect(() => {
+        setListOrders(listOrder);
+    }, [listOrder])
 
-export default function DetailScreen( {navigation} ) {
+    // useEffect(() => {
+    //     setListRender(product)
+    // }, [product])
+    
+    
+    ListOrderContexts = createContext({ listOrders: listOrders });
+    function addList() {
+        // var obj = item;
+        // obj["soLuong"] = "1";
+        // setListOrder([...listOrder, obj]);
+        navigation.navigate('Screen6');
+      }
+
+
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-                    <TouchableOpacity  onPress={() => navigation.navigate('Home')} >
+         <ListOrderContexts.Provider
+                value={{ listOrders: listOrders }}
+              ></ListOrderContexts.Provider>
+              <View style={styles.header}>
+                    <TouchableOpacity  onPress={() => navigation.navigate('HomeScreen')} >
                         <MyIcon style={styles.iconStyleS} name='arrow-back' />
                     </TouchableOpacity>
-                    <TouchableOpacity >
+                    <TouchableOpacity onPress={() => navigation.navigate('Screen6')}>
                         <MyIcon style={styles.iconStyle} name='shopping-cart' />
                     </TouchableOpacity>
 
                 </View>
-                <Text style={styles.logo}>Nike Name</Text>
+     {/* {listRender.map((item, index) => ( */}
+     {/* <FlatList
+                        style={{flex: 1}}
+                        data={listRender}
+                        renderItem={renderItem} 
+   
+                // }}
+                keyExtractor={(item,index) => index}
+    /> */}
+                <Text style={styles.logo}>{product.tenSanPham}</Text>
                 <Text style={styles.logoX}>Women's shoes</Text>
-                <Text style={styles.productPrice}>$190.5</Text>
+                <Text style={styles.productPrice}>${product.donGia}</Text>
 
-                <Image style={styles.productImg} source={imgTemp} />
+                <Image style={styles.productImg} source={{uri: product.anhSanPham}} />
 
                 <View style={styles.productListColor}>
                     <FlatList />
                 </View>
 
                 <View style={styles.productInfo}>
-                    <Text style={styles.productInfoTxt}>This information is used to create The Pantone Color of the Year and the Pantone Fashion Color Report with the top fashion colors for the year:</Text>
+                    <Text style={styles.productInfoTxt}>{product.moTa}</Text>
+                    {console.log("alo",product.moTa)}
                     <TouchableOpacity>
                         <Text style={styles.productInfoBtn}>Read more</Text>
                     </TouchableOpacity>
@@ -38,13 +77,12 @@ export default function DetailScreen( {navigation} ) {
                     <TouchableOpacity>
                         <MyIconIon  style={styles.iconStyle} name='heart-outline' />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.btnBuyBorder}>
+                    <TouchableOpacity style={styles.btnBuyBorder}  onPress={() => {addList()
+                    }}>
                         <Text style={styles.btnBuyBorderTxt}>Buy Now</Text>
                     </TouchableOpacity>
                 </View>
-                
 
-      
     </View>
   );
 }
@@ -147,6 +185,6 @@ btnBuyBorder:{
 btnBuyBorderTxt:{
     color:'white',
     fontSize:18
-}
+},
 
 });

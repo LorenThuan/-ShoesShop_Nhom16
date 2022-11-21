@@ -2,35 +2,46 @@ import { StatusBar } from 'expo-status-bar';
 import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, ScrollView } from 'react-native';
 import MyIcon from 'react-native-vector-icons/MaterialIcons';
 import MyIconIon from 'react-native-vector-icons/Ionicons';
-
-import imgTemp from '../Img/shoesTemp.png'
-
-
-const tileData = [
-    {
-        'name': 'a'
-    },
-    {
-        'name': 'abcsdfds'
-    },
-    {
-        'name': 'asdf'
-    },
-    {
-        'name': 'asf'
-    }
-]
-
-
+import React, { createContext, useEffect, useState } from "react";
+export var ListOrderContext = createContext();
 export default function HomeScreen( {navigation} ) {
+    const [data, setData] = useState([]);
+    
+    const [listOrder, setListOrder] = useState([]);
+    ListOrderContext = createContext({ listOrder: listOrder });
+    function addList(item) {
+        var obj = item;
+        obj["soLuong"] = "1";
+        setListOrder([...listOrder, obj]);
+        navigation.navigate('DetailScreen', {product: item})
+      }
+
+    useEffect(() => {
+        getListProducts();
+    }, [])
+
+    const getListProducts = () => {
+        const apiURL = "https://636c7f0bad62451f9fcbae43.mockapi.io/products";
+        fetch(apiURL)
+        .then((res) => res.json())
+        .then((resJson) => {
+            setData(resJson)
+        }).catch((error) => {
+            console.log("Error: ", error);
+        })
+    }
+
     return (
-        <ScrollView>
+        
             <View style={styles.container}>
+                 <ListOrderContext.Provider
+                value={{ listOrder: listOrder }}
+              ></ListOrderContext.Provider>
                 <View style={styles.header}>
                     <TouchableOpacity >
                         <MyIcon style={styles.iconStyle} name='menu' />
                     </TouchableOpacity>
-                    <TouchableOpacity >
+                    <TouchableOpacity>
                         <MyIcon style={styles.iconStyle} name='shopping-cart' />
                     </TouchableOpacity>
 
@@ -59,50 +70,62 @@ export default function HomeScreen( {navigation} ) {
 
                 <View style={styles.titleList}>
                     <FlatList
-                        data={tileData}
+                        data={data}
                         horizontal={true}
-                        keyExtractor={({ id }, index) => id}
-                        renderItem={({ item }) => (
+                        keyExtractor={(item,index) => index}
+                        renderItem={({ item, index }) => (
                             <View style={styles.itemTile}>
-                                <Image style={styles.itemTitleImg} source={imgTemp} />
-                                <Text style={styles.itemTitleName}>{item.name}</Text>
+                                <View style={styles.itemTitleImg}>
+                                        <Image  source={{uri: item.anhHang}} style={{width: 30, height: 30, resizeMode: "contain"}}/>
+                                </View>
+                                <Text style={styles.itemTitleName}>{item.tenHang}</Text>
                             </View>
                         )}
                     />
                 </View>
 
                 <View style={styles.titleProductBoder}>
-                    <Text style={styles.titleProduct}>Chose brand</Text>
+                    <Text style={styles.titleProduct}>New Arraival</Text>
                     <TouchableOpacity>
                         <Text style={styles.titleProductViewAll}>View all</Text>
                     </TouchableOpacity>
                 </View>
 
+                <ScrollView nestedScrollEnabled>
                 <View style={styles.productList}>
+                   
+
+                   
                     <FlatList
-                        data={tileData}
+                        data={data}
                         numColumns={2}
                         scrollEnabled={false}
-                        keyExtractor={({ id }, index) => id}
-                        renderItem={({ item }) => (
-                            <View style={styles.itemProduct}>
+                        showsVerticalScrollIndicator={false}
+                        horizontal={false}
+                        keyExtractor={(item,index) => index}
+                        renderItem={({ item, index }) => {
+                            return (
+                            <TouchableOpacity style={styles.itemProduct} onPress={() => {addList(item)}} >
                                 <MyIconIon style={styles.itemProductIcon} name='heart-outline' />
-                                <TouchableOpacity  onPress={() => navigation.navigate('Detail')} >
-                                    <Image style={styles.itemProductImg} source={imgTemp} />
-                                </TouchableOpacity>
+                                <View>
+                                    <Image style={styles.itemProductImg} source={{uri: item.anhSanPham}}/>
+                                </View>
                                 <View style={styles.itemProductRating}>
                                     <MyIcon style={styles.itemProductIconS} name='star' />
-                                    <Text style={styles.itemProductRate}>5.0</Text>
+                                    <Text style={styles.itemProductRate}>{item.danhGia}</Text>
                                 </View>
-                                <Text style={styles.itemProductName}>{item.name}</Text>
-                                <Text style={styles.itemProductPrice}>$90</Text>
-                            </View>
-                        )}
+                                <Text style={styles.itemProductName}>{item.tenSanPham}</Text>
+                                <Text style={styles.itemProductPrice}>${item.donGia}</Text>
+                            </TouchableOpacity>
+                            )
+                        }}
+    
                     />
+              
                 </View>
-
+                </ScrollView>               
             </View>
-        </ScrollView>
+ 
     );
 }
 
@@ -227,11 +250,14 @@ const styles = StyleSheet.create({
 
     },
     itemTitleImg: {
-        width: 40,
-        height: 40,
+        width: 50,
+        height: 50,
         backgroundColor: 'white',
         borderRadius: 15,
-        padding: 5
+        padding: 5,
+        alignItems: "center",
+        justifyContent: "center"
+        // resizeMode: "contain"
     },
     itemTitleName: {
         marginLeft: 10,
@@ -266,7 +292,7 @@ const styles = StyleSheet.create({
     itemProductImg: {
         width: 120,
         height: 150,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     itemProductName: {
         fontSize: 22,

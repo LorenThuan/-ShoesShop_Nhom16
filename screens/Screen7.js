@@ -70,7 +70,7 @@ export default function Screen7({navigation}) {
                 </View>
 
                 <View style={styles.bottom}>
-              <TouchableOpacity style={{justifyContent: "center", alignItems: "center", backgroundColor: "#278AE4", height: "100%"}} onPress={() => navigation.navigate('Screen6')}>
+              <TouchableOpacity style={{justifyContent: "center", alignItems: "center", backgroundColor: "#278AE4", height: "100%"}} onPress={() => navigation.navigate('HomeScreen')}>
                       <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>Continue Shopping</Text>
               </TouchableOpacity>
       </View>
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   bottom: {
     height: height/5,
     marginHorizontal: 20,
-    height: 100,
+    height: 70,
     // marginVertical: 5,
     marginBottom: 30
   },

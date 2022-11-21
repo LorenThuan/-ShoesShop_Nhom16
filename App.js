@@ -10,6 +10,7 @@ import DetailScreen from './screens/DetailScreen';
 import HomeScreen from './screens/HomeScreen';
 import Screen6 from './screens/Screen6';
 import Screen7 from './screens/Screen7';
+import BottomTabScreens from './screens/BottomTabScreens';
 const Stack = createStackNavigator();
 const config = {
   animation: 'spring',
@@ -67,7 +68,7 @@ const customTransition = {
   }
 }
 export default function App() {
-  // const Stack = createStackNavigator();
+  // const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
     <Stack.Navigator screenOptions={{headerShown:false,
@@ -99,7 +100,7 @@ export default function App() {
         }} />
         <Stack.Screen name='Test' component={Test}     
        />
-
+<Stack.Screen name='BottomTabScreens' component={BottomTabScreens} />
 <Stack.Screen name='HomeScreen' component={HomeScreen}     
       />
       <Stack.Screen name='DetailScreen' component={DetailScreen}     

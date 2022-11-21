@@ -22,58 +22,96 @@ import {
   } from "@expo/vector-icons";
   import colors from "./color";
   import { TextInput } from "react-native-paper";
-//   import { ListOrderContext } from "./Home";
   import { useIsFocused } from "@react-navigation/native";
+  import { ListOrderContexts } from "./DetailScreen";
   const {width, height} = Dimensions.get("window");
 
   export default function Screen6({ navigation }) {
     const [tabChoose, setTabChoose] = useState(true);
     const [listRender, setListRender] = useState([]);
     const [rerender, setRerender] = useState(false);
-    // var { listOrder } = useContext(ListOrderContext);
+    var { listOrders } = useContext(ListOrderContexts);
     const isFocused = useIsFocused();
-    // useEffect(() => {
-    //   setListRender(listOrder);
-    //   var priceNow = 0;
-    //   listOrder.forEach((e) => {
-    //     priceNow += e.amount * e.price;
-    //   });
-    //   setPrice(priceNow.toFixed(2));
-    //   var totalPriceNow = (priceNow + 1).toFixed(2);
-    //   setTotalPrice(totalPriceNow + "");
-    // }, [isFocused, rerender]);
-    // function add(index) {
-    //   var amount = Number.parseInt(listRender[index].amount) + 1;
-    //   listOrder[index].amount = amount + "";
-    //   setRerender(!rerender);
-    // }
-    // function sub(index) {
-    //   var amountNow = Number.parseInt(listRender[index].amount);
-    //   if (amountNow == 1) {
-    //     Alert.alert("Warning", "Do you want to delete it?", [
-    //       {
-    //         text: "No",
-    //         onPress: () => {},
-    //         style: "cancel",
-    //       },
-    //       {
-    //         text: "Yes",
-    //         onPress: () => {
-    //           listOrder.splice(index, 1);
-    //           setRerender(!rerender);
-    //         },
-    //       },
-    //     ]);
-    //   } else {
-    //     var amount = Number.parseInt(listRender[index].amount) - 1;
-    //     listOrder[index].amount = amount + "";
-    //     setRerender(!rerender);
-    //   }
-    // }
-    const [price, setPrice] = useState("4.53");
-    const [fee, setFee] = useState("1.0");
-    const [feeOri, setFeeOri] = useState("2.0");
-    const [totalPrice, setTotalPrice] = useState("5.53");
+    useEffect(() => {
+      setListRender(listOrders);
+      var priceNow = 0;
+      listOrders.forEach((e) => {
+        priceNow += e.soLuong * e.donGia;
+      });
+      setItemTotal(priceNow.toFixed(2));
+      var delivaryCharge = 0.1 * priceNow.toFixed(2);
+      setDelivaryCharge(delivaryCharge.toFixed(2) + "")
+      if (itemTotal === 0.00) {
+        delivaryCharge = 0.00
+        setDelivaryCharge(0.00 + "")
+      }
+      var totalPriceNow = (priceNow + delivaryCharge).toFixed(2);
+      setTotalPrice(totalPriceNow + "");
+     console.log(listRender);
+    }, [isFocused, rerender]);
+
+
+
+    
+
+    function add(index) {
+      var soLuong = Number.parseInt(listRender[index].soLuong) + 1;
+      listOrders[index].soLuong = soLuong + "";
+      setRerender(!rerender);
+    }
+    function sub(index) {
+      var soLuongNow = Number.parseInt(listRender[index].soLuong);
+      if (soLuongNow == 1) {
+        Alert.alert("Warning", "Do you want to delete it?", [
+          {
+            text: "No",
+            onPress: () => {},
+            style: "cancel",
+          },
+          {
+            text: "Yes",
+            onPress: () => {
+              listOrders.splice(index, 1);
+              // var donGia = listRender[index].donGia
+              // var tinhTienLai =  Number.parseInt(totalPrice) - donGia 
+              // setDelivaryCharge(0.00 + "")
+              // setTotalPrice(tinhTienLai + "")
+              setRerender(!rerender);
+            },
+          },
+        ]);
+      } else {
+        var soLuong = Number.parseInt(listRender[index].soLuong) - 1;
+        listOrders[index].soLuong = soLuong + "";
+        setRerender(!rerender);
+      }
+    }
+    const [delivaryCharge, setDelivaryCharge] = useState("0.00");
+    //   const [VAT, setVAT] = useState("2.6");
+      const [totalPrice, setTotalPrice] = useState("120.00");
+      const [itemTotal, setItemTotal] = useState("110.00");
+
+    function deleteItem(index) {
+      Alert.alert("Warning", "Do you want to delete it?", [
+        {
+          text: "No",
+          onPress: () => {},
+          style: "cancel",
+        },
+        {
+          text: "Yes",
+          onPress: () => {
+            listOrders.splice(index, 1);
+            var donGia = Number.parseInt(listRender[index].donGia)
+            var tinhTienLai =  Number.parseInt(totalPrice) - donGia 
+            setDelivaryCharge(0.00 + "")
+            setTotalPrice(tinhTienLai + "")
+            setRerender(!rerender);
+          },
+        },
+      ]);
+    }
+    
     // item
   
     return (
@@ -82,7 +120,7 @@ import {
         <View style={styles.header}>
           <TouchableOpacity
             onPress={() => {
-              navigation.goBack();
+              navigation.navigate("HomeScreen");
             }}
           style={styles.btnGoBack}>
             <Ionicons name="arrow-back" size={28} color="black" />
@@ -92,19 +130,20 @@ import {
         </View>
 
         <ScrollView nestedScrollEnabled={true}>
-          <View style={{}}>
+          {/* <View style={{}}>
 
-          </View>
+          </View> */}
+        {listRender.map((item, index) => (
         <View style={styles.halfTop}>
 
 
           <View>
-            {/* {listRender.map((item, index) => ( */}
+           
               <View style={styles.items} >
                 <View style={{ flexDirection: "row" }}>
                   <View style={styles.bgImg}>
                   <Image
-                        source={{ uri: "https://res.cloudinary.com/drve4pmbe/image/upload/v1668578490/ImageOnThiThucHanh/image7_dfrh4k.png" }}
+                        source={{ uri: item.anhSanPham}}
                         style={{ width: 150, height: 150, alignItems: "center", justifyContent: "center"}}
                       />
                   </View>
@@ -112,25 +151,25 @@ import {
             
                   <View style={{ marginLeft: 15, justifyContent: "space-around", width: "55%"}}>
                     <Text style={{ fontWeight: "bold", fontSize: 15 , marginTop: 20}}>
-                        Nike Metcon 7
+                        {item.tenSanPham}
                     </Text>
                     <Text style={{ color: "#8F959E", fontWeight: "400", fontSize: 18 }}>
-                      $99
+                      ${item.donGia}
                     </Text>
                     <View style={{flexDirection: "row", justifyContent: "space-between"}}>
 
                         <View  style={{flexDirection: "row", justifyContent: "space-between", alignItems: "center", width: "60%"}}>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => {sub(index)}}>
                                 <Entypo name="chevron-with-circle-down" size={32} color="#8F959E" />
                             </TouchableOpacity>
-                            <Text style={{fontWeight: "bold", size: 20}}>1</Text>
-                            <TouchableOpacity>
+                            <Text style={{fontWeight: "bold", size: 20}}>{item.soLuong}</Text>
+                            <TouchableOpacity onPress={() => {add(index)}}>
                                 <Entypo name="chevron-with-circle-up" size={32} color="#8F959E" />
                             </TouchableOpacity>
                         </View>
                     
-                      <TouchableOpacity>
-                              <MaterialCommunityIcons name="delete-circle-outline" size={32} color="#8F959E" />
+                      <TouchableOpacity onPress={() => {deleteItem(index)}}>
+                              <MaterialCommunityIcons name="delete-circle-outline" size={32} color="#8F959E"/>
                       </TouchableOpacity>
                       
                          
@@ -139,11 +178,11 @@ import {
                 </View>
              
               </View>
-            {/* ))} */}
+          
           </View>
-
+    
         </View>
-
+       ))}
         <View style={styles.center}>
             <View style={{flexDirection: "row", alignItems: "center", justifyContent: "space-between"}}>
                     <Text style={{fontSize: 20, fontWeight: "bold"}}>
@@ -215,17 +254,17 @@ import {
                 <View style={{justifyContent: "center", marginTop: 20}}>
                         <View style={{flexDirection: "row", justifyContent: "space-between"}}>
                               <Text style={{fontSize: 18, color: "#8F959E", fontWeight: "400"}}>Subtotal</Text>
-                              <Text style={{fontSize: 20, fontWeight: "bold"}}>$110</Text>
+                              <Text style={{fontSize: 20, fontWeight: "bold"}}>${itemTotal}</Text>
                         </View>
 
                         <View style={{flexDirection: "row", justifyContent: "space-between", marginTop: 10}}>
                               <Text style={{fontSize: 18, color: "#8F959E", fontWeight: "400"}}>Delivery Charge</Text>
-                              <Text style={{fontSize: 20, fontWeight: "bold"}}>$10</Text>
+                              <Text style={{fontSize: 20, fontWeight: "bold"}}>${delivaryCharge}</Text>
                         </View>
 
                         <View style={{flexDirection: "row", justifyContent: "space-between", marginTop: 20}}>
                               <Text style={{fontSize: 18, color: "#8F959E", fontWeight: "400"}}>Total</Text>
-                              <Text style={{fontSize: 20, fontWeight: "bold"}}>$120</Text>
+                              <Text style={{fontSize: 20, fontWeight: "bold"}}>${totalPrice}</Text>
                         </View>
                 </View>
                                 
@@ -289,7 +328,7 @@ import {
     bottom: {
       height: height/6,
       marginHorizontal: 15,
-      height: 100,
+      height: 70,
       marginVertical: 20
     },
     header: {
@@ -331,8 +370,8 @@ import {
       marginLeft: 20
     },
     btnGoBack: {
-      height: 45,
-      width: 45,
+      height: 55,
+      width: 55,
       backgroundColor: "#F5F6FA",
       borderRadius: 50,
       justifyContent: "center",
