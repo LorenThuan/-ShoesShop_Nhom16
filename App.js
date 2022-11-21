@@ -100,15 +100,54 @@ export default function App() {
         }} />
         <Stack.Screen name='Test' component={Test}     
        />
-<Stack.Screen name='BottomTabScreens' component={BottomTabScreens} />
+<Stack.Screen name='BottomTabScreens' component={BottomTabScreens} options={{
+          transitionSpec: {
+            open: config,
+            close: closeConfig,
+          },
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        
+        }}/>
 <Stack.Screen name='HomeScreen' component={HomeScreen}     
+      options={{
+        transitionSpec: {
+          open: config,
+          close: closeConfig,
+        },
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      
+      }}
       />
       <Stack.Screen name='DetailScreen' component={DetailScreen}     
+       options={{
+        transitionSpec: {
+          open: config,
+          close: closeConfig,
+        },
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      
+      }}
        />
    
        <Stack.Screen name='Screen6' component={Screen6}     
+      options={{
+        transitionSpec: {
+          open: config,
+          close: closeConfig,
+        },
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      
+      }}
       />
        <Stack.Screen name='Screen7' component={Screen7}     
+      options={{
+        transitionSpec: {
+          open: config,
+          close: closeConfig,
+        },
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      
+      }}
       />
     </Stack.Navigator>
   </NavigationContainer>

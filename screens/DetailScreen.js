@@ -11,11 +11,13 @@ export default function DetailScreen( {navigation, route} ) {
     // const isFocused = useIsFocused();
     // const [listRender, setListRender] = useState([]);
     const [listOrders, setListOrders] = useState([]);
+    const [image, setimage] = useState([]);
     var { listOrder } = useContext(ListOrderContext);
     // const [rerender, setRerender] = useState(false);
 
     useEffect(() => {
         setListOrders(listOrder);
+        setimage(product.anhSanPham);
     }, [listOrder])
 
     // useEffect(() => {
@@ -27,7 +29,7 @@ export default function DetailScreen( {navigation, route} ) {
     function addList() {
         // var obj = item;
         // obj["soLuong"] = "1";
-        // setListOrder([...listOrder, obj]);
+        // // setListOrder([...listOrder, obj]);
         navigation.navigate('Screen6');
       }
 
@@ -110,18 +112,19 @@ header: {
     alignItems: 'flex-end',
     paddingLeft: 15,
     paddingRight: 15,
-    marginBottom:20
+    marginBottom:20,
+    marginVertical:10,
 },
 iconStyle: {
     fontSize: 30,
-    borderWidth: 1,
+    // borderWidth: 1,
     borderRadius: 90,
     padding: 10,
     backgroundColor: '#e6e6e6',
 },
 iconStyleS: {
     fontSize: 30,
-    borderWidth: 1,
+    // borderWidth: 1,
     borderRadius: 15,
     padding: 10,
     backgroundColor: '#D9D9D9',

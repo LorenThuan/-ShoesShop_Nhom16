@@ -46,7 +46,6 @@ export default function Screen7({navigation}) {
                     <ImageBackground source={require('../assets/Group2.png')} style={{width: 200, height: "100%", justifyContent: "center",alignItems: "center"}}>
                           
                                 <View style={{width: 170, height: 100, backgroundColor: "#F5F6FA"}}>
-
                                 </View>
                               
                     </ImageBackground>

@@ -145,11 +145,13 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'flex-end',
         paddingLeft: 15,
-        paddingRight: 15
+        paddingRight: 15,
+        marginVertical:10,
     },
     iconStyle: {
+       
         fontSize: 30,
-        borderWidth: 1,
+        // borderWidth: 1,
         borderRadius: 90,
         padding: 10,
         backgroundColor: '#e6e6e6',
@@ -272,7 +274,8 @@ const styles = StyleSheet.create({
     itemProduct: {
         width: '46%',
         backgroundColor: 'white',
-        marginLeft: 10,
+        marginLeft: 14,
+        // margin:10,
         marginBottom: 10,
         padding: 10,
         borderRadius: 15,
@@ -291,7 +294,7 @@ const styles = StyleSheet.create({
     },
     itemProductImg: {
         width: 120,
-        height: 150,
+        height: 100,
         alignSelf: 'center',
     },
     itemProductName: {
