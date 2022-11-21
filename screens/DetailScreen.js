@@ -6,6 +6,7 @@ import React, { createContext, useEffect, useState,useContext } from "react";
 export var ListOrderContexts = createContext();
 import { useIsFocused } from "@react-navigation/native";
 import { ListOrderContext } from "./HomeScreen";
+import ShoesView from "./ShoesView";
 export default function DetailScreen( {navigation, route} ) {
     const { product } = route.params;
     // const isFocused = useIsFocused();
@@ -61,8 +62,10 @@ export default function DetailScreen( {navigation, route} ) {
                 <Text style={styles.logoX}>Women's shoes</Text>
                 <Text style={styles.productPrice}>${product.donGia}</Text>
 
-                <Image style={styles.productImg} source={{uri: product.anhSanPham}} />
-
+                {/* <Image style={styles.productImg} source={{uri: product.anhSanPham}} /> */}
+                <View style={{ flex:0.5, justifyContent:'center',alignItems:'center',flexDirection:'row',marginTop:40}}>
+                    <ShoesView ></ShoesView>
+                </View>
                 <View style={styles.productListColor}>
                     <FlatList />
                 </View>
