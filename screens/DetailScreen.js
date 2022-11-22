@@ -156,14 +156,14 @@ iconStyle: {
     // borderWidth: 1,
     borderRadius: 90,
     padding: 10,
-    backgroundColor: '#e6e6e6',
+    backgroundColor: "#F5F6FA",
 },
 iconStyleS: {
     fontSize: 30,
     // borderWidth: 1,
     borderRadius: 15,
     padding: 10,
-    backgroundColor: '#D9D9D9',
+    backgroundColor: "#F5F6FA",
 },
 logo: {
     fontSize: 30,
@@ -219,7 +219,8 @@ bottomBtn:{
     flexDirection:'row',
     width:'100%',
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    marginBottom:20,
 },
 btnBuyBorder:{
     marginLeft:40,
@@ -239,7 +240,8 @@ itemTile: {
     backgroundColor: '#e6e6e6',
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 10,
+    justifyContent:'center',
+    marginLeft: 20,
     padding: 20,
     borderRadius: 15,
     

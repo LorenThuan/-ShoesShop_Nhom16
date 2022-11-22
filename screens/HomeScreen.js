@@ -1,8 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, ScrollView } from 'react-native';
+import { FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View, Image, ScrollView ,Button} from 'react-native';
 import MyIcon from 'react-native-vector-icons/MaterialIcons';
 import MyIconIon from 'react-native-vector-icons/Ionicons';
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState ,useRef} from "react";
+import { Ionicons } from '@expo/vector-icons';
+import LottieView from 'lottie-react-native';
 export var ListOrderContext = createContext();
 export var Items = createContext();
 export default function HomeScreen( {navigation} ) {
@@ -22,6 +24,7 @@ export default function HomeScreen( {navigation} ) {
 
     useEffect(() => {
         getListProducts();
+        animation.current?.play();
     }, [])
 
     const getListProducts = () => {
@@ -35,7 +38,7 @@ export default function HomeScreen( {navigation} ) {
         })
     }
 
-
+    const animation = useRef(null);
     
 
     return (
@@ -44,18 +47,33 @@ export default function HomeScreen( {navigation} ) {
                  <ListOrderContext.Provider
                 value={{ listOrder: listOrder }}
               ></ListOrderContext.Provider>
-                <View style={styles.header}>
-                    {/* {
-                         data.forEach((n) => {
-                            console.log("alo image: ", n.danhSachMau.image1)
-                        })
-                    } */}
+                <View style={styles.header}>              
                     <TouchableOpacity >
                         <MyIcon style={styles.iconStyle} name='menu' />
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+                    {/* <Ionicons name="notifications-outline" size={30} color="black" style={styles.iconStyles} /> */}
+                 
                         <MyIcon style={styles.iconStyle} name='shopping-cart' />
                     </TouchableOpacity>
+                    <LottieView
+                            autoPlay
+                            ref={animation}
+                            style={{
+                            
+                            flexDirection:'row',
+                            justifyContent:'flex-end',
+                            alignItems:'flex-end',
+                            marginTop:15,
+                            marginLeft:120,
+                        
+                            // borderWidth: 1,
+                           
+                        
+                            }}
+                            // Find more Lottie files at https://lottiefiles.com/featured
+                            source={{uri:'https://assets1.lottiefiles.com/packages/lf20_eDOZIr.json'}}                  
+                        /> 
 
                 </View>
                 <Text style={styles.logo}>Hemendra</Text>
@@ -166,8 +184,9 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
         borderRadius: 90,
         padding: 10,
-        backgroundColor: '#e6e6e6',
+        backgroundColor: "#F5F6FA",
     },
+ 
     logo: {
         fontSize: 30,
         fontWeight: 'bold',

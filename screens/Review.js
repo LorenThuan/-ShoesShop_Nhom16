@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         width: '100%',
-        height: 80,
+        height: 100,
         backgroundColor: 'white',
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
         borderRadius: 90,
         padding: 10,
-        backgroundColor: '#D9D9D9',
+        backgroundColor: "#F5F6FA",
     },
     reviewTxt: {
         fontSize: 25,

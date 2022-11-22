@@ -23,7 +23,7 @@ export default class ResponseView extends Component {
     onPress(evt) {
         const { locationX, locationY } = evt.nativeEvent;
         this.setState({ x: locationX, y: locationY });
-        console.log(locationX, locationY);
+        
     }
 
     onMove(evt) { 
@@ -88,8 +88,6 @@ export default class ResponseView extends Component {
                 }}
             >
          
-                
-    
 
                 <Animated.Image 
                     source={arrImages[this.state.index]} 

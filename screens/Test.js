@@ -1,55 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View ,Image, TouchableOpacity, ImageBackground,Animated} from 'react-native';
 import React, { useRef, useEffect } from 'react';
-export default function Test({navigation}) {
-    const fadeAnim = useRef(new Animated.Value(0)).current 
-  
-   const FadeInView =() => {
-      Animated.timing(
-        fadeAnim,
-        {
-          toValue:1000,
-          duration: 5000,
-          useNativeDriver:false,
-        }
-      ).start();
-    };
+import { Button, StyleSheet, View } from 'react-native';
+import LottieView from 'lottie-react-native';
+
+export default function Test() {
+  const animation = useRef(null);
+  // useEffect(() => {
+  //   // You can control the ref programmatically, rather than using autoPlay
+  //   // animation.current?.play();
+  // }, []);
+
   return (
-    <View style={styles.container}>
-        <Animated.View style={{
-            flex:1, 
-        marginTop:fadeAnim,
-        justifyContent:'center',
-            }}>
-            <ImageBackground source={require("../assets/icon.png")} style={styles.img}></ImageBackground>
-            </Animated.View>
-        <TouchableOpacity style={styles.btn} onPress={FadeInView}>
-                <Text style={{fontSize:18,fontWeight:'bold',color:'white'}}>Login</Text>
-            </TouchableOpacity>
-      <StatusBar style="auto" />
+    <View style={styles.animationContainer}>
+      <LottieView
+        autoPlay
+        ref={animation}
+        style={{
+          width: 200,
+          height: 200,
+          backgroundColor: '#eee',
+        }}
+        // Find more Lottie files at https://lottiefiles.com/featured
+        source={{uri:'https://assets1.lottiefiles.com/packages/lf20_jox3g6ph.json'}}
+      />
+      {/* <View style={styles.buttonContainer}>
+        <Button
+          title="Restart Animation"
+          onPress={() => {
+            animation.current?.reset();
+            animation.current?.play();
+          }}
+        />
+      </View> */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  animationContainer: {
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
     flex: 1,
-    backgroundColor: '#1483C2',
-    justifyContent:'flex-end',
-    alignItems:'center',
   },
-  img:{
-    width:100,
-  height:100,
-
-},
-btn:{
-    flex:0.1,
-    margin:15,
-    borderRadius:15,
-    backgroundColor:'#3D8AD1',
-    justifyContent:'center',
-    alignItems:'center',
-    marginBottom:50
- }
+  buttonContainer: {
+    paddingTop: 20,
+  },
 });
