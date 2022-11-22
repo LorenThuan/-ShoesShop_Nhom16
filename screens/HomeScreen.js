@@ -4,15 +4,19 @@ import MyIcon from 'react-native-vector-icons/MaterialIcons';
 import MyIconIon from 'react-native-vector-icons/Ionicons';
 import React, { createContext, useEffect, useState } from "react";
 export var ListOrderContext = createContext();
+export var Items = createContext();
 export default function HomeScreen( {navigation} ) {
     const [data, setData] = useState([]);
-    
+    const [dataTemp, setDataTemp] = useState([]);
     const [listOrder, setListOrder] = useState([]);
+
     ListOrderContext = createContext({ listOrder: listOrder });
-    function addList(item) {
+    function addList(index, item) {
         var obj = item;
         obj["soLuong"] = "1";
         setListOrder([...listOrder, obj]);
+        // setDataTemp([...dataTemp, item]);
+        // console.log("fbi:", dataTemp);
         navigation.navigate('DetailScreen', {product: item})
       }
 
@@ -31,6 +35,9 @@ export default function HomeScreen( {navigation} ) {
         })
     }
 
+
+    
+
     return (
         
             <View style={styles.container}>
@@ -38,6 +45,11 @@ export default function HomeScreen( {navigation} ) {
                 value={{ listOrder: listOrder }}
               ></ListOrderContext.Provider>
                 <View style={styles.header}>
+                    {/* {
+                         data.forEach((n) => {
+                            console.log("alo image: ", n.danhSachMau.image1)
+                        })
+                    } */}
                     <TouchableOpacity >
                         <MyIcon style={styles.iconStyle} name='menu' />
                     </TouchableOpacity>
@@ -63,8 +75,8 @@ export default function HomeScreen( {navigation} ) {
 
                 <View style={styles.titleLabelBoder}>
                     <Text style={styles.titleLael}>Chose brand</Text>
-                    <TouchableOpacity>
-                        <Text style={styles.titleLaelViewAll}>View all</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate("Review")}>
+                        <Text style={styles.titleLaelViewAll}>Review all</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -105,7 +117,7 @@ export default function HomeScreen( {navigation} ) {
                         keyExtractor={(item,index) => index}
                         renderItem={({ item, index }) => {
                             return (
-                            <TouchableOpacity style={styles.itemProduct} onPress={() => {addList(item)}} >
+                            <TouchableOpacity style={styles.itemProduct} onPress={() => {addList(index, item)}} >
                                 <MyIconIon style={styles.itemProductIcon} name='heart-outline' />
                                 <View>
                                     <Image style={styles.itemProductImg} source={{uri: item.anhSanPham}}/>
@@ -273,7 +285,7 @@ const styles = StyleSheet.create({
     },
     itemProduct: {
         width: '46%',
-        backgroundColor: 'white',
+        backgroundColor: 'rgba(194, 145, 108, 0.2)',
         marginLeft: 14,
         // margin:10,
         marginBottom: 10,

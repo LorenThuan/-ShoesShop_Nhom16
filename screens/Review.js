@@ -2,14 +2,16 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { Rating, AirbnbRating } from 'react-native-ratings';
 import MyIcon from 'react-native-vector-icons/MaterialIcons';
 import MyIconTwo from 'react-native-vector-icons/MaterialCommunityIcons';
-import temp from '../img/temp.png'
-
-export default function Review() {
+// import temp from '../img/temp.png'
+import hinh2 from "../assets/Rectangle_Copy_219-removebg-preview.png";
+import hinh3 from "../assets/39.png";
+import hinh4 from "../assets/129.png";
+export default function Review({navigation}) {
     return (
 
         <View style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity  >
+                <TouchableOpacity  onPress={() => navigation.navigate("HomeScreen")}>
                     <MyIcon style={styles.iconStyleS} name='arrow-back' />
                 </TouchableOpacity>
                 <View style={styles.reviewTxtBorder}>
@@ -19,15 +21,15 @@ export default function Review() {
 
             <View style={styles.reviewInfo}>
                 <View style={styles.reviewInfoVal}>
-                    <Text style={styles.reviewInfoValNum}>230 Reviews</Text>
+                    <Text style={styles.reviewInfoValNum}>245 Reviews</Text>
                     <View style={styles.reviewInfoValNumStarBoder}>
-                        <Text style={styles.reviewInfoValNumStar}>5.0</Text>
+                        <Text style={styles.reviewInfoValNumStar}>4.0</Text>
                         <Rating
                             type="star"
                             ratingCount={5}
                             imageSize={18}
                             readonly
-                            startingValue={3.5}
+                            startingValue={4.0}
                         />
                     </View>
                 </View>
@@ -43,18 +45,18 @@ export default function Review() {
                 <View style={styles.itemReview}>
                     <View style={styles.infoPeople}>
                         <View style={styles.infoPeopleVal}>
-                            <Image style={styles.infoPeopleValImg} source={temp} />
+                            <Image style={styles.infoPeopleValImg} source={{uri: "https://th.bing.com/th/id/R.b200e80a274409063c9b0cb012a903f0?rik=pZsUkh5Bwu0ckQ&riu=http%3a%2f%2fdreamicus.com%2fdata%2fface%2fface-04.jpg&ehk=DoEQsxlyE6kbYi2Ye7Us61xDsyBa2nhcSv7Tg6PZ1Cc%3d&risl=&pid=ImgRaw&r=0"}} />
                             <View style={styles.infoPeopleValX}>
-                                <Text style={styles.infoPeopleValTxt}>Name</Text>
+                                <Text style={styles.infoPeopleValTxt}>Jenny Wilson</Text>
                                 <View style={{flexDirection:'row', alignItems:'center'}}>
                                     <MyIconTwo style={styles.infoPeopleValTxtTime}  name='clock-outline'/>
-                                    <Text style={styles.infoPeopleValTxtTime}>time</Text>
+                                    <Text style={styles.infoPeopleValTxtTime}>22/11/2022</Text>
                                 </View>
                             </View>
                         </View>
                         <View style={styles.infoPeopleValRating}>
                             <View style={styles.infoPeopleValRatingNum}>
-                                <Text style={styles.infoPeopleValRatingNumVal}>5.0</Text>
+                                <Text style={styles.infoPeopleValRatingNumVal}>4.0</Text>
                                 <Text style={{ color: 'grey' }}>rating</Text>
                             </View>
                             <Rating
@@ -62,29 +64,29 @@ export default function Review() {
                                 ratingCount={5}
                                 imageSize={12}
                                 readonly
-                                startingValue={3.5}
+                                startingValue={4.0}
                             />
                         </View>
                     </View>
-                    <Text style={styles.comment}>One of my friends showed me this Star Rating feature in Bootstrap and it looks really interesting. So I challenged myself to re-implement it in React Native.</Text>
+                    <Text style={styles.comment}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...</Text>
                 </View>
 
 
                 <View style={styles.itemReview}>
                     <View style={styles.infoPeople}>
                         <View style={styles.infoPeopleVal}>
-                            <Image style={styles.infoPeopleValImg} source={temp} />
+                            <Image style={styles.infoPeopleValImg} source={hinh2} />
                             <View style={styles.infoPeopleValX}>
-                                <Text style={styles.infoPeopleValTxt}>Name</Text>
+                                <Text style={styles.infoPeopleValTxt}>Ronald Richards</Text>
                                 <View style={{flexDirection:'row', alignItems:'center'}}>
                                     <MyIconTwo style={styles.infoPeopleValTxtTime}  name='clock-outline'/>
-                                    <Text style={styles.infoPeopleValTxtTime}>time</Text>
+                                    <Text style={styles.infoPeopleValTxtTime}>22/11/2022</Text>
                                 </View>
                             </View>
                         </View>
                         <View style={styles.infoPeopleValRating}>
                             <View style={styles.infoPeopleValRatingNum}>
-                                <Text style={styles.infoPeopleValRatingNumVal}>5.0</Text>
+                                <Text style={styles.infoPeopleValRatingNumVal}>4.0</Text>
                                 <Text style={{ color: 'grey' }}>rating</Text>
                             </View>
                             <Rating
@@ -92,11 +94,69 @@ export default function Review() {
                                 ratingCount={5}
                                 imageSize={12}
                                 readonly
-                                startingValue={3.5}
+                                startingValue={4.0}
                             />
                         </View>
                     </View>
-                    <Text style={styles.comment}>One of my friends showed me this Star Rating feature in Bootstrap and it looks really interesting. So I challenged myself to re-implement it in React Native.</Text>
+                    <Text style={styles.comment}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...</Text>
+                </View>
+
+                <View style={styles.itemReview}>
+                    <View style={styles.infoPeople}>
+                        <View style={styles.infoPeopleVal}>
+                            <Image style={styles.infoPeopleValImg} source={hinh3} />
+                            <View style={styles.infoPeopleValX}>
+                                <Text style={styles.infoPeopleValTxt}>Guy Hawkins</Text>
+                                <View style={{flexDirection:'row', alignItems:'center'}}>
+                                    <MyIconTwo style={styles.infoPeopleValTxtTime}  name='clock-outline'/>
+                                    <Text style={styles.infoPeopleValTxtTime}>22/11/2022</Text>
+                                </View>
+                            </View>
+                        </View>
+                        <View style={styles.infoPeopleValRating}>
+                            <View style={styles.infoPeopleValRatingNum}>
+                                <Text style={styles.infoPeopleValRatingNumVal}>4.0</Text>
+                                <Text style={{ color: 'grey' }}>rating</Text>
+                            </View>
+                            <Rating
+                                type="star"
+                                ratingCount={5}
+                                imageSize={12}
+                                readonly
+                                startingValue={4.0}
+                            />
+                        </View>
+                    </View>
+                    <Text style={styles.comment}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...</Text>
+                </View>
+
+                <View style={styles.itemReview}>
+                    <View style={styles.infoPeople}>
+                        <View style={styles.infoPeopleVal}>
+                            <Image style={styles.infoPeopleValImg} source={hinh4} />
+                            <View style={styles.infoPeopleValX}>
+                                <Text style={styles.infoPeopleValTxt}>Savannah Nguyen</Text>
+                                <View style={{flexDirection:'row', alignItems:'center'}}>
+                                    <MyIconTwo style={styles.infoPeopleValTxtTime}  name='clock-outline'/>
+                                    <Text style={styles.infoPeopleValTxtTime}>22/11/2022</Text>
+                                </View>
+                            </View>
+                        </View>
+                        <View style={styles.infoPeopleValRating}>
+                            <View style={styles.infoPeopleValRatingNum}>
+                                <Text style={styles.infoPeopleValRatingNumVal}>4.0</Text>
+                                <Text style={{ color: 'grey' }}>rating</Text>
+                            </View>
+                            <Rating
+                                type="star"
+                                ratingCount={5}
+                                imageSize={12}
+                                readonly
+                                startingValue={4.0}
+                            />
+                        </View>
+                    </View>
+                    <Text style={styles.comment}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque malesuada eget vitae amet...</Text>
                 </View>
 
 
@@ -135,14 +195,14 @@ const styles = StyleSheet.create({
     },
     iconStyle: {
         fontSize: 30,
-        borderWidth: 1,
+        // borderWidth: 1,
         borderRadius: 90,
         padding: 10,
         backgroundColor: '#e6e6e6',
     },
     iconStyleS: {
         fontSize: 30,
-        borderWidth: 1,
+        // borderWidth: 1,
         borderRadius: 90,
         padding: 10,
         backgroundColor: '#D9D9D9',
@@ -236,7 +296,7 @@ const styles = StyleSheet.create({
         borderRadius: 90,
         marginLeft:20,
         borderWidth:1,
-        borderColor:'grey'
+        borderColor:'grey',
     },
     infoPeopleValRating: {
         marginRight:20,

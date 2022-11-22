@@ -10,7 +10,7 @@ import {
     Dimensions,
     ImageBackground
   } from "react-native";
-  import React, { useContext, useEffect, useState } from "react";
+  import React, { useContext, useEffect, useState, createContext } from "react";
   import {
     Ionicons,
     SimpleLineIcons,
@@ -25,15 +25,19 @@ import {
   import { useIsFocused } from "@react-navigation/native";
   import { ListOrderContexts } from "./DetailScreen";
   const {width, height} = Dimensions.get("window");
-
-  export default function Screen6({ navigation }) {
+  export var ListOrderContext6 = createContext();
+  export default function Screen6({ navigation, route }) {
     const [tabChoose, setTabChoose] = useState(true);
     const [listRender, setListRender] = useState([]);
     const [rerender, setRerender] = useState(false);
     var { listOrders } = useContext(ListOrderContexts);
     const isFocused = useIsFocused();
+    // const { productTemp } = route.params;
+
+    // ListOrderContext6 = createContext({ listRender: listRender });
     useEffect(() => {
       setListRender(listOrders);
+      // setListRender([...listRender, productTemp]);
       var priceNow = 0;
       listOrders.forEach((e) => {
         priceNow += e.soLuong * e.donGia;
@@ -112,7 +116,6 @@ import {
   
     return (
       <View style={styles.container}>
-
         <View style={styles.header}>
           <TouchableOpacity
             onPress={() => {
@@ -124,7 +127,7 @@ import {
           <Text style={{ fontSize: 30, fontWeight: "bold" }}>Cart</Text>
           <View style={{ width: 45 }}></View>
         </View>
-
+            {console.log("alo 12345: ", listRender)}
         <ScrollView nestedScrollEnabled={true}>
           {/* <View style={{}}>
 
@@ -286,6 +289,7 @@ import {
       height: height/6,
       marginHorizontal: 20,
       borderRadius: 20,
+      marginBottom: 20,
       height: 180,
       shadowColor: "#000",
       shadowOffset: {

@@ -10,16 +10,25 @@ import ShoesView from "./ShoesView";
 export default function DetailScreen( {navigation, route} ) {
     const { product } = route.params;
     // const isFocused = useIsFocused();
-    // const [listRender, setListRender] = useState([]);
+    const [listProduct, setListProduct] = useState([]);
     const [listOrders, setListOrders] = useState([]);
-    const [image, setimage] = useState([]);
+    const [image, setImage] = useState("");
+    // var {  = useContext(ntext);
     var { listOrder } = useContext(ListOrderContext);
-    // const [rerender, setRerender] = useState(false);
+    const [listProductTemp, setListProductTemp] = useState([]);
+    const [rerender, setRerender] = useState(false);
 
     useEffect(() => {
+        // set
+        // setimage(product.anhSanPham);
+        // setListProduct(product);
         setListOrders(listOrder);
-        setimage(product.anhSanPham);
-    }, [listOrder])
+        setListProductTemp(product.danhSachMau)
+        // console.log("alo product: ", product);
+       
+    }, [product, listOrder])
+
+
 
     // useEffect(() => {
     //     setListRender(product)
@@ -28,11 +37,19 @@ export default function DetailScreen( {navigation, route} ) {
     
     ListOrderContexts = createContext({ listOrders: listOrders });
     function addList() {
-        // var obj = item;
+        // var obj = product;
+        // // obj["anhThayThe"] = image;
         // obj["soLuong"] = "1";
-        // // setListOrder([...listOrder, obj]);
+        // setListOrders([...listOrders]);
+        // console.log("ww",obj);
         navigation.navigate('Screen6');
       }
+
+     function changeColor(index) {
+            var temp = listProductTemp[index].image;
+            setImage(temp);
+            setRerender(!rerender);
+     } 
 
 
   return (
@@ -41,6 +58,7 @@ export default function DetailScreen( {navigation, route} ) {
                 value={{ listOrders: listOrders }}
               ></ListOrderContexts.Provider>
               <View style={styles.header}>
+              
                     <TouchableOpacity  onPress={() => navigation.navigate('HomeScreen')} >
                         <MyIcon style={styles.iconStyleS} name='arrow-back' />
                     </TouchableOpacity>
@@ -63,16 +81,31 @@ export default function DetailScreen( {navigation, route} ) {
                 <Text style={styles.productPrice}>${product.donGia}</Text>
 
                 {/* <Image style={styles.productImg} source={{uri: product.anhSanPham}} /> */}
-                <View style={{ flex:0.5, justifyContent:'center',alignItems:'center',flexDirection:'row',marginTop:40}}>
+                <View style={{ flex:1, justifyContent:'center',alignItems:'center',flexDirection:'row',top: 100}}>
                     <ShoesView ></ShoesView>
                 </View>
+
                 <View style={styles.productListColor}>
-                    <FlatList />
+                     <FlatList
+                        data={listProductTemp}
+                        horizontal={true}
+                        keyExtractor={(item,index) => index}
+                        renderItem={({ item, index }) => (
+                            <TouchableOpacity style={styles.itemTile} onPress={() => {changeColor(index)}}>
+                                <View style={styles.itemTitleImg}>
+                                        <Image  source={{uri: item.image}} style={{width: 100, height: 100}}/>
+                                </View>
+                                {/* <View style={styles.itemTitleImg}>
+                                        <Image  source={{uri: item.image3}} style={{width: 30, height: 30, resizeMode: "contain"}}/>
+                                </View> */}
+                            </TouchableOpacity>
+                        )}
+                    />
                 </View>
 
                 <View style={styles.productInfo}>
                     <Text style={styles.productInfoTxt}>{product.moTa}</Text>
-                    {console.log("alo",product.moTa)}
+                    {/* {console.log("alo",product.moTa)} */}
                     <TouchableOpacity>
                         <Text style={styles.productInfoBtn}>Read more</Text>
                     </TouchableOpacity>
@@ -157,7 +190,10 @@ productImg:{
 },
 productListColor:{
     width: '100%',
-    height: 50,
+    height: 100,
+    // marginVertical: 80,
+    marginTop: 180,
+    marginLeft: 20
 },
 productInfo:{
     width: '100%',
@@ -167,11 +203,17 @@ productInfo:{
 productInfoBtn:{
     width:'100%',
     marginLeft:300,
-    color:'grey'
+    color:'#949494',
+    textShadowColor: 'rgba(0, 0, 0, 0.25)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10
 },
 productInfoTxt:{
-    color:'grey',
-    marginRight:30
+    color:'#949494',
+    marginRight:30,
+    textShadowColor: 'rgba(0, 0, 0, 0.25)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 10
 },
 bottomBtn:{
     flexDirection:'row',
@@ -191,6 +233,26 @@ btnBuyBorder:{
 btnBuyBorderTxt:{
     color:'white',
     fontSize:18
+},
+itemTile: {
+    height: 70,
+    backgroundColor: '#e6e6e6',
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 10,
+    padding: 20,
+    borderRadius: 15,
+    
+
+},
+itemTitleImg: {
+    width: 50,
+    height: 50,
+    // backgroundColor: 'white',
+    padding: 5,
+    alignItems: "center",
+    justifyContent: "center"
+    // resizeMode: "contain"
 },
 
 });

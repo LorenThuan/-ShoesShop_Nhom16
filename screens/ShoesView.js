@@ -63,8 +63,8 @@ export default class ResponseView extends Component {
 
     render() {
         const rotate = this.state.rotate.interpolate({
-            inputRange: [-1,0],
-            outputRange: ['0deg', '180deg']
+            inputRange: [-1,1],
+            outputRange: ['-30deg', '30deg']
         });
 
         const opacity = this.state.rotate.interpolate({

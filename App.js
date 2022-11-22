@@ -11,6 +11,7 @@ import HomeScreen from './screens/HomeScreen';
 import Screen6 from './screens/Screen6';
 import Screen7 from './screens/Screen7';
 import BottomTabScreens from './screens/BottomTabScreens';
+import Review from './screens/Review';
 const Stack = createStackNavigator();
 const config = {
   animation: 'spring',
@@ -149,6 +150,18 @@ export default function App() {
       
       }}
       />
+
+<Stack.Screen name='Review' component={Review}     
+      options={{
+        transitionSpec: {
+          open: config,
+          close: closeConfig,
+        },
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      
+      }}
+      />
+
     </Stack.Navigator>
   </NavigationContainer>
   );
