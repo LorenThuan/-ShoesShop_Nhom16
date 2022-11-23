@@ -69,7 +69,7 @@ export default function Screen7({navigation}) {
                 </View>
 
                 <View style={styles.bottom}>
-              <TouchableOpacity style={{justifyContent: "center", alignItems: "center", backgroundColor: "#278AE4", height: "100%"}} onPress={() => navigation.navigate('HomeScreen')}>
+              <TouchableOpacity style={{justifyContent: "center", alignItems: "center", backgroundColor: "#278AE4", height: "100%"}} onPress={() => navigation.navigate('BottomTabScreens')}>
                       <Text style={{fontSize: 25, color: "white", fontWeight: "bold"}}>Continue Shopping</Text>
               </TouchableOpacity>
       </View>

@@ -14,6 +14,7 @@ import {
 import colors from "../screens/color";
 import HomeScreen from "./HomeScreen";
 import Screen6 from "./Screen6";
+import Screen7 from "./Screen7";
 
 const Tab = createBottomTabNavigator();
 export default function BottomTabScreens() {
@@ -31,14 +32,14 @@ export default function BottomTabScreens() {
           headerTitle: () => <HomeScreen/>,
           tabBarIcon: ({ focused }) => {
             return (
-              <Foundation
-                name="home"
-                size={24}
-                color="black"
-                style={{
-                  color: focused ? colors.lightBlue : "#8F959E",
-                  paddingTop: 5,
-                }}
+              <Ionicons 
+              name="home-sharp" 
+              size={24} 
+              color="black" 
+              style={{
+                color: focused ? colors.lightBlue : "#8F959E",
+                paddingTop: 5,
+              }}
               />
             );
           },
@@ -92,8 +93,8 @@ export default function BottomTabScreens() {
       />
 
       <Tab.Screen
-        name="Homea"
-        component={HomeScreen}
+        name="Screen07"
+        component={Screen7}
         options={{
           tabBarLabel: () => {
             null;

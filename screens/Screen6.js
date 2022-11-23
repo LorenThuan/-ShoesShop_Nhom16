@@ -119,7 +119,7 @@ import {
         <View style={styles.header}>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("HomeScreen");
+              navigation.navigate("BottomTabScreens");
             }}
           style={styles.btnGoBack}>
             <Ionicons name="arrow-back" size={28} color="black" />

@@ -59,7 +59,7 @@ export default function DetailScreen( {navigation, route} ) {
               ></ListOrderContexts.Provider>
               <View style={styles.header}>
               
-                    <TouchableOpacity  onPress={() => navigation.navigate('HomeScreen')} >
+                    <TouchableOpacity  onPress={() => navigation.navigate('BottomTabScreens')} >
                         <MyIcon style={styles.iconStyleS} name='arrow-back' />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('Screen6')}>

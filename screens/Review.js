@@ -11,7 +11,7 @@ export default function Review({navigation}) {
 
         <View style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity  onPress={() => navigation.navigate("HomeScreen")}>
+                <TouchableOpacity  onPress={() => navigation.navigate("BottomTabScreens")}>
                     <MyIcon style={styles.iconStyleS} name='arrow-back' />
                 </TouchableOpacity>
                 <View style={styles.reviewTxtBorder}>
