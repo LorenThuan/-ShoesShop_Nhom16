@@ -68,8 +68,8 @@ export default function BottomTabScreens() {
         }}
       />
       <Tab.Screen
-        name="Screen6"
-        component={Screen6}
+        name="Screen06"
+        component={HomeScreen}
         options={{
           tabBarLabel: () => {
             null;
@@ -93,8 +93,8 @@ export default function BottomTabScreens() {
       />
 
       <Tab.Screen
-        name="Screen07"
-        component={Screen7}
+        name="Screen11"
+        component={HomeScreen}
         options={{
           tabBarLabel: () => {
             null;
